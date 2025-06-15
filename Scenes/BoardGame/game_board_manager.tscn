@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmvor112fuyif"]
+
+[ext_resource type="Script" path="res://Scenes/BoardGame/game_board_manager.gd" id="1_dk1i4"]
+
+[node name="GameBoardManager" type="Node2D"]
+script = ExtResource("1_dk1i4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(575, 325)
