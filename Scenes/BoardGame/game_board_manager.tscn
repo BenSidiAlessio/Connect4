@@ -32,3 +32,68 @@ offset_right = 224.0
 offset_bottom = 192.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 68.0
+offset_right = 800.0
+offset_bottom = 132.0
+
+[node name="Button" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Button2")
+focus_next = NodePath("../Button2")
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+
+[node name="Button2" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Button")
+focus_neighbor_right = NodePath("../Button3")
+focus_next = NodePath("../Button3")
+focus_previous = NodePath("../Button")
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+
+[node name="Button3" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Button2")
+focus_neighbor_right = NodePath("../Button4")
+focus_next = NodePath("../Button2")
+focus_previous = NodePath("../Button4")
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+
+[node name="Button4" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Button3")
+focus_neighbor_right = NodePath("../Button5")
+focus_next = NodePath("../Button3")
+focus_previous = NodePath("../Button5")
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+
+[node name="Button5" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Button4")
+focus_neighbor_right = NodePath("../Button6")
+focus_next = NodePath("../Button4")
+focus_previous = NodePath("../Button6")
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+
+[node name="Button6" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Button5")
+focus_neighbor_right = NodePath("../Button7")
+focus_next = NodePath("../Button5")
+focus_previous = NodePath("../Button7")
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+
+[node name="Button7" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Button6")
+focus_previous = NodePath("../Button6")
