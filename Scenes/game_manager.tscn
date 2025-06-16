@@ -5,9 +5,11 @@
 [node name="GameManager" type="Node"]
 
 [node name="MainMenuUI" parent="." instance=ExtResource("1_s6cin")]
-offset_left = -577.0
-offset_top = -326.0
-offset_right = -577.0
-offset_bottom = -326.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="MainMenuUI"]
+scale = Vector2(1e-05, 1e-05)
+anchor_mode = 0
