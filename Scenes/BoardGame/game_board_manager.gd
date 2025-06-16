@@ -6,9 +6,11 @@ var offSetPosition : int = 32 # half of cell, because it gonna start from positi
 var cellPixels : int = 64
 var board_data : Dictionary = {}
 var cell_scene = load("res://Scenes/BoardGame/cell.tscn");
+@onready var board_container : CenterContainer 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-
+	board_container = $Control/BoardContainer 
 	for x in board_width:
 		for y in board_height:
 			var xPosition = x * cellPixels + offSetPosition
@@ -29,5 +31,5 @@ func _process(delta: float) -> void:
 func set_cell(coords: Vector2i):
 	var instance = cell_scene.instantiate()
 	instance.position = coords
-	add_child(instance)
+	board_container.add_child(instance)
 	return instance
