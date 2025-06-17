@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmvor112fuyif"]
+[gd_scene load_steps=6 format=3 uid="uid://cmvor112fuyif"]
 
 [ext_resource type="Script" path="res://Scenes/BoardGame/game_board_manager.gd" id="1_dk1i4"]
+[ext_resource type="Texture2D" uid="uid://br3jg4n4djraf" path="res://Assets/UIAssets/02.png" id="2_qnjs0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ixfc1"]
+texture = ExtResource("2_qnjs0")
+region_rect = Rect2(-0.106155, 47.5874, 32.0508, 32.0508)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txs4c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sija2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="GameBoardManager" type="Node2D"]
 script = ExtResource("1_dk1i4")
@@ -40,60 +50,81 @@ offset_top = 68.0
 offset_right = 800.0
 offset_bottom = 132.0
 
-[node name="Button" type="Button" parent="Control/HBoxContainer"]
+[node name="ColumnButton" type="Button" parent="Control/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_left = NodePath("../Button2")
-focus_next = NodePath("../Button2")
+focus_neighbor_left = NodePath("../ColumnButton2")
+focus_next = NodePath("../ColumnButton2")
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_styles/hover = SubResource("StyleBoxTexture_ixfc1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_txs4c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sija2")
 
-[node name="Button2" type="Button" parent="Control/HBoxContainer"]
+[node name="ColumnButton2" type="Button" parent="Control/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_left = NodePath("../Button")
-focus_neighbor_right = NodePath("../Button3")
-focus_next = NodePath("../Button3")
-focus_previous = NodePath("../Button")
+focus_neighbor_left = NodePath("../ColumnButton")
+focus_neighbor_right = NodePath("../ColumnButton3")
+focus_next = NodePath("../ColumnButton3")
+focus_previous = NodePath("../ColumnButton")
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_styles/hover = SubResource("StyleBoxTexture_ixfc1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_txs4c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sija2")
 
-[node name="Button3" type="Button" parent="Control/HBoxContainer"]
+[node name="ColumnButton3" type="Button" parent="Control/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_left = NodePath("../Button2")
-focus_neighbor_right = NodePath("../Button4")
-focus_next = NodePath("../Button2")
-focus_previous = NodePath("../Button4")
+focus_neighbor_left = NodePath("../ColumnButton2")
+focus_neighbor_right = NodePath("../ColumnButton4")
+focus_next = NodePath("../ColumnButton2")
+focus_previous = NodePath("../ColumnButton4")
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_styles/hover = SubResource("StyleBoxTexture_ixfc1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_txs4c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sija2")
 
-[node name="Button4" type="Button" parent="Control/HBoxContainer"]
+[node name="ColumnButton4" type="Button" parent="Control/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_left = NodePath("../Button3")
-focus_neighbor_right = NodePath("../Button5")
-focus_next = NodePath("../Button3")
-focus_previous = NodePath("../Button5")
+focus_neighbor_left = NodePath("../ColumnButton3")
+focus_neighbor_right = NodePath("../ColumnButton5")
+focus_next = NodePath("../ColumnButton3")
+focus_previous = NodePath("../ColumnButton5")
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_styles/hover = SubResource("StyleBoxTexture_ixfc1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_txs4c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sija2")
 
-[node name="Button5" type="Button" parent="Control/HBoxContainer"]
+[node name="ColumnButton5" type="Button" parent="Control/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_left = NodePath("../Button4")
-focus_neighbor_right = NodePath("../Button6")
-focus_next = NodePath("../Button4")
-focus_previous = NodePath("../Button6")
+focus_neighbor_left = NodePath("../ColumnButton4")
+focus_neighbor_right = NodePath("../ColumnButton6")
+focus_next = NodePath("../ColumnButton4")
+focus_previous = NodePath("../ColumnButton6")
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_styles/hover = SubResource("StyleBoxTexture_ixfc1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_txs4c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sija2")
 
-[node name="Button6" type="Button" parent="Control/HBoxContainer"]
+[node name="ColumnButton6" type="Button" parent="Control/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_left = NodePath("../Button5")
-focus_neighbor_right = NodePath("../Button7")
-focus_next = NodePath("../Button5")
-focus_previous = NodePath("../Button7")
+focus_neighbor_left = NodePath("../ColumnButton5")
+focus_neighbor_right = NodePath("../ColumnButton7")
+focus_next = NodePath("../ColumnButton5")
+focus_previous = NodePath("../ColumnButton7")
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_styles/hover = SubResource("StyleBoxTexture_ixfc1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_txs4c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sija2")
 
-[node name="Button7" type="Button" parent="Control/HBoxContainer"]
+[node name="ColumnButton7" type="Button" parent="Control/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_left = NodePath("../Button6")
-focus_previous = NodePath("../Button6")
+focus_neighbor_left = NodePath("../ColumnButton6")
+focus_previous = NodePath("../ColumnButton6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ixfc1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_txs4c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sija2")
