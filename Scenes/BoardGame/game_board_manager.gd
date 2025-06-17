@@ -17,9 +17,10 @@ func _ready() -> void:
 			var yPosition = y * cellPixels + offSetPosition
 			var cell = set_cell(Vector2i(xPosition,yPosition))
 			if cell != null:
-				board_data [str(Vector2i(xPosition,yPosition))] = {
+				board_data ["(" + str(x) +"," + str(y) + ")" ] = {
+						"Position": Vector2i(xPosition,yPosition),
 						"Cell": cell,
-						"State": "Empty"
+						"Coin": null
 					}
 			
 	print(board_data)
