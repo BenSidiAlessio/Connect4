@@ -1,21 +1,39 @@
 extends Node2D
 
-var board_width : int = 7
-var board_height : int = 6
-var offSetPosition : int = 32 # half of cell, because it gonna start from position 0 but the top right corner
-var cellPixels : int = 64
-var board_data : Dictionary = {}
-var cell_scene = load("res://Scenes/BoardGame/cell.tscn");
-var coin_scene = load("res://Scenes/BoardGame/coin.tscn");
-@onready var board_container : CenterContainer = $Control/BoardContainer 
+var board_width : int = 7;
+var board_height : int = 6;
+var offSetPosition : int = 32; # half of cell, because it gonna start from position 0 but the top right corner
+var cellPixels : int = 64;
+var board_data : Dictionary = {};
+var cell_scene : PackedScene = preload("res://Scenes/BoardGame/cell.tscn");
+var coin_scene : PackedScene = preload("res://Scenes/BoardGame/coin.tscn");
+var players : Dictionary = {};
+@onready var player1_coin_texture : CompressedTexture2D = preload("res://Assets/Board/Cell/redcoin.png");
+@onready var player2_coin_texture : CompressedTexture2D = preload("res://Assets/Board/Cell/yellowcoin.png");
+@onready var board_container : CenterContainer = $Control/BoardContainer;
+@onready var player_turn : int = RandomNumberGenerator.new().randf_range(1, 2); # turn generated randomically, 1 is for player 1 and 2 is for player 2
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	build_board()
+	set_players()
+	build_board();
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+# Prepare the dictionary of players with game point, stats and coin texture
+func set_players():
+	players[1] = {
+		"player_coin_texture" = player1_coin_texture,
+		"points" = 0
+	}
+	players[2] = {
+		"player_coin_texture" = player2_coin_texture,
+		"points" = 0
+	}
 
 # Build a simple board based on the values of Height with board_height variable and Width with board_width
 func build_board():
@@ -44,7 +62,6 @@ func set_cell(coords: Vector2i):
 func set_coin(coords: Vector2i, cell : Node2D):
 	var instance = coin_scene.instantiate()
 	instance.position = cell.position
-	print(cell)
 	board_container.add_child(instance)
 	return instance
 
@@ -54,14 +71,23 @@ func add_coin_on_board(col_num : int):
 	var key : String = "({0},{1})"
 	for y in range(board_height, 0, -1):
 		var cell = board_data[key.format([str(col_num),str(y-1)])]
-		#print(cell["Coin"] == null)
+
 		if cell["Coin"] == null and cell != null:
 			cell["Coin"] = set_coin(cell["Position"], cell["Cell"])
-			print(cell)
+			change_turn(cell["Coin"])
 			return
 			
 	print("You can't place more coin!!!")
 	pass
+
+# Change turn to player1 for 1 to player2 for 2
+func change_turn(coin : Node2D):
+	var texture = players[player_turn]["player_coin_texture"]
+	if player_turn == 1:
+		coin.set_texture(texture)
+		player_turn = 2
+	else:
+		player_turn = 1
 
 
 #-------------------------------------- SIGNALS ------------------------------------------
