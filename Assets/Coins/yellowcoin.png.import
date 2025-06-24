@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccdty4w313oqe"
-path="res://.godot/imported/yellowcoin.png-84dea450b131c8a3f15b1a573f6edee9.ctex"
+path="res://.godot/imported/yellowcoin.png-8f3437daa22f0716f0c62b2600625072.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Board/Cell/yellowcoin.png"
-dest_files=["res://.godot/imported/yellowcoin.png-84dea450b131c8a3f15b1a573f6edee9.ctex"]
+source_file="res://Assets/Coins/yellowcoin.png"
+dest_files=["res://.godot/imported/yellowcoin.png-8f3437daa22f0716f0c62b2600625072.ctex"]
 
 [params]
 

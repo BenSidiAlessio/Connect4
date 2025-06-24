@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b77kmfnu1jsfs"]
 
-[ext_resource type="Texture2D" uid="uid://ccdty4w313oqe" path="res://Assets/Board/Cell/yellowcoin.png" id="1_0chp1"]
+[ext_resource type="Texture2D" uid="uid://ccdty4w313oqe" path="res://Assets/Coins/yellowcoin.png" id="1_0chp1"]
 [ext_resource type="Script" path="res://Scenes/BoardGame/coin.gd" id="1_d1svq"]
 
 [node name="Coin" type="Node2D"]
