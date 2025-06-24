@@ -42,18 +42,18 @@ func set_cell(coords: Vector2i):
 # Generate an instance of coin at the coords passed by params
 # @coords: coordination of the position of the coin
 func set_coin(coords: Vector2i, cell : Node2D):
-	var instance = cell_scene.instantiate()
-	instance.position = coords
+	var instance = coin_scene.instantiate()
+	instance.position = cell.position
 	print(cell)
-	cell.add_child(instance)
+	board_container.add_child(instance)
 	return instance
 
 # Check on the vertical line passed as param of the board where to put the coin of the turn
 # @col_num : vertical position of the grid
 func add_coin_on_board(col_num : int):
 	var key : String = "({0},{1})"
-	for y in board_height:
-		var cell = board_data[key.format([str(col_num),str(y)])]
+	for y in range(board_height, 0, -1):
+		var cell = board_data[key.format([str(col_num),str(y-1)])]
 		#print(cell["Coin"] == null)
 		if cell["Coin"] == null and cell != null:
 			cell["Coin"] = set_coin(cell["Position"], cell["Cell"])
@@ -67,28 +67,28 @@ func add_coin_on_board(col_num : int):
 #-------------------------------------- SIGNALS ------------------------------------------
 # Button column 1
 func _on_column_button_pressed() -> void:
-	add_coin_on_board(1)
+	add_coin_on_board(0)
 
 # Button column 2
 func _on_column_button_2_pressed() -> void:
-	add_coin_on_board(2)
+	add_coin_on_board(1)
 
 # Button column 3
 func _on_column_button_3_pressed() -> void:
-	add_coin_on_board(3)
+	add_coin_on_board(2)
 
 # Button column 4
 func _on_column_button_4_pressed() -> void:
-	add_coin_on_board(4)
+	add_coin_on_board(3)
 
 # Button column 5
 func _on_column_button_5_pressed() -> void:
-	add_coin_on_board(5)
+	add_coin_on_board(4)
 
 # Button column 6
 func _on_column_button_6_pressed() -> void:
-	add_coin_on_board(6)
+	add_coin_on_board(5)
 
 # Button column 7
 func _on_column_button_7_pressed() -> void:
-	add_coin_on_board(7)
+	add_coin_on_board(6)
