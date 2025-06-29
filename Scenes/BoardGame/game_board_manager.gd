@@ -5,9 +5,9 @@ var board_height : int = 6;
 var offSetPosition : int = 32; # half of cell, because it gonna start from position 0 but the top right corner
 var cellPixels : int = 64;
 var board_data : Dictionary = {};
+var players : Dictionary = {};
 var cell_scene : PackedScene = preload("res://Scenes/BoardGame/cell.tscn");
 var coin_scene : PackedScene = preload("res://Scenes/BoardGame/coin.tscn");
-var players : Dictionary = {};
 var number_win_coins : int  = 4
 var number_win_turn : int = 3
 
@@ -52,7 +52,10 @@ func add_coin_on_board(col_num : int):
 		if cell["Coin"] == null and cell != null:
 			cell["Coin"] = set_coin(cell["Position"], cell["Cell"]);
 			cell["Player"] = player_turn;
-			check_winner()
+			if check_winner():
+				print(player_turn)
+				reset_board()
+				return
 			change_turn(cell["Coin"])
 			return
 			
@@ -60,8 +63,9 @@ func add_coin_on_board(col_num : int):
 	pass
 
 func reset_board():
-	players = {}
-	build_board()
+	players = {};
+	board_data = {};
+	build_board();
 
 
 # Change turn to player1 for 1 to player2 for 2
@@ -129,15 +133,82 @@ func check_winner() -> bool:
 		for y in board_height:
 			player_checked = board_data[key.format([str(x),str(y)])]["Player"];
 			if player_checked == last_player_checked and player_checked != 0:
-				cell_count += 1
+				cell_count += 1;
 			else:
-				last_player_checked = player_checked
-				cell_count = 1
+				last_player_checked = player_checked;
+				cell_count = 1;
 			
 			if cell_count == number_win_coins:
-				return true
-				
-	return false
+				return true;
+	# reset
+	cell_count = 1;
+	player_checked = 0;
+	last_player_checked = 0;
+	# check diagonal from top to bottom \
+	# row
+	for row in range(board_height - 4): # 3 mean that you need almost 3 row to have 4 cell diagonals
+		for col in range(board_height-1):
+			player_checked = board_data[key.format([str(row+col),str(col)])]["Player"];
+			if player_checked == last_player_checked and player_checked != 0:
+				cell_count += 1;
+			else:
+				last_player_checked = player_checked;
+				cell_count = 1;
+			
+			if cell_count == number_win_coins:
+				return true;
+
+	# reset
+	cell_count = 1;
+	player_checked = 0;
+	last_player_checked = 0;
+	for col in range(1, board_width - 4): # 3 mean that you need almost 3 row to have 4 cell diagonals
+		for row in range(board_width-1):
+			player_checked = board_data[key.format([str(row),str(col+row)])]["Player"];
+			if player_checked == last_player_checked and player_checked != 0:
+				cell_count += 1;
+			else:
+				last_player_checked = player_checked;
+				cell_count = 1;
+			
+			if cell_count == number_win_coins:
+				return true;
+
+# reset
+	cell_count = 1;
+	player_checked = 0;
+	last_player_checked = 0;
+	# check diagonal from bottom to top /
+	for row in range(board_height-1, 3, -1): # 3 mean that you need almost 3 row to have 4 cell diagonals
+		for col in range(board_width-2):
+			player_checked = board_data[key.format([str(row-col),str(col)])]["Player"];
+			if player_checked == last_player_checked and player_checked != 0:
+				cell_count += 1;
+			else:
+				last_player_checked = player_checked;
+				cell_count = 1;
+			
+			if cell_count == number_win_coins:
+				return true;
+
+
+	# reset
+	cell_count = 1;
+	player_checked = 0;
+	last_player_checked = 0;
+	for col in range(1, board_width - 3): # 3 mean that you need almost 3 row to have 4 cell diagonals
+		for row in range(board_width):
+			player_checked = board_data[key.format([str(row),str(col+row)])]["Player"];
+			if player_checked == last_player_checked and player_checked != 0:
+				cell_count += 1;
+			else:
+				last_player_checked = player_checked;
+				cell_count = 1;
+			
+			if cell_count == number_win_coins:
+				return true;
+	
+	return false;
 
 #-------------------------------------- SIGNALS ------------------------------------------
 # Button column 1
