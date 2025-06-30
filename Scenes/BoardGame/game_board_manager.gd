@@ -30,8 +30,8 @@ func _process(delta: float) -> void:
 
 # Build a simple board based on the values of Height with board_height variable and Width with board_width
 func build_board():
-	for x in board_width:
-		for y in board_height:
+	for x in range(0, board_width):
+		for y in range(0, board_height):
 			var xPosition = x * cellPixels + offSetPosition
 			var yPosition = y * cellPixels + offSetPosition
 			var cell = set_cell(Vector2i(xPosition,yPosition))
@@ -128,6 +128,7 @@ func check_winner() -> bool:
 	cell_count = 1
 	player_checked = 0
 	last_player_checked = 0
+	
 	# check Vertical
 	for x in board_width:
 		for y in board_height:
@@ -140,14 +141,15 @@ func check_winner() -> bool:
 			
 			if cell_count == number_win_coins:
 				return true;
+
 	# reset
 	cell_count = 1;
 	player_checked = 0;
 	last_player_checked = 0;
 	# check diagonal from top to bottom \
 	# row
-	for row in range(board_height - 4): # 3 mean that you need almost 3 row to have 4 cell diagonals
-		for col in range(board_height-1):
+	for col in range(0, board_height - 3): # 3 mean that you need almost 3 row to have 4 cell diagonals
+		for row in range(0, board_height-1):
 			player_checked = board_data[key.format([str(row+col),str(col)])]["Player"];
 			if player_checked == last_player_checked and player_checked != 0:
 				cell_count += 1;
@@ -162,9 +164,11 @@ func check_winner() -> bool:
 	cell_count = 1;
 	player_checked = 0;
 	last_player_checked = 0;
-	for col in range(1, board_width - 4): # 3 mean that you need almost 3 row to have 4 cell diagonals
-		for row in range(board_width-1):
-			player_checked = board_data[key.format([str(row),str(col+row)])]["Player"];
+	for row in range(1, board_width - 3): # 4 mean that you need almost 3 row to have 4 cell diagonals
+		for col in range(0, board_width-1):
+			if(row+col) > board_width-1:
+				break
+			player_checked = board_data[key.format([str(row+col),str(col)])]["Player"];
 			if player_checked == last_player_checked and player_checked != 0:
 				cell_count += 1;
 			else:
@@ -179,8 +183,10 @@ func check_winner() -> bool:
 	player_checked = 0;
 	last_player_checked = 0;
 	# check diagonal from bottom to top /
-	for row in range(board_height-1, 3, -1): # 3 mean that you need almost 3 row to have 4 cell diagonals
-		for col in range(board_width-2):
+	for row in range(board_height, 3, -1): # 3 mean that you need almost 3 row to have 4 cell diagonals
+		for col in range(board_height):
+			if (row-col) < 0:
+				break
 			player_checked = board_data[key.format([str(row-col),str(col)])]["Player"];
 			if player_checked == last_player_checked and player_checked != 0:
 				cell_count += 1;
@@ -196,9 +202,12 @@ func check_winner() -> bool:
 	cell_count = 1;
 	player_checked = 0;
 	last_player_checked = 0;
-	for col in range(1, board_width - 3): # 3 mean that you need almost 3 row to have 4 cell diagonals
-		for row in range(board_width):
-			player_checked = board_data[key.format([str(row),str(col+row)])]["Player"];
+	for col in range(board_width-1, 3, -1): # 3 mean that you need almost 3 row to have 4 cell diagonals
+		for row in range(board_width-1):
+
+			if (col-row) < 0:
+				break;
+			player_checked = board_data[key.format([str(col-row),str(row)])]["Player"];
 			if player_checked == last_player_checked and player_checked != 0:
 				cell_count += 1;
 			else:
