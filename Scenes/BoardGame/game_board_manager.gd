@@ -1,5 +1,7 @@
 extends Node2D
 
+const KEY : String = "({0},{1})"; # Pattern for dictionary board key
+
 var board_width : int = 7;
 var board_height : int = 6;
 var offSetPosition : int = 32; # half of cell, because it gonna start from position 0 but the top right corner
@@ -8,8 +10,8 @@ var board_data : Dictionary = {};
 var players : Dictionary = {};
 var cell_scene : PackedScene = preload("res://Scenes/BoardGame/cell.tscn");
 var coin_scene : PackedScene = preload("res://Scenes/BoardGame/coin.tscn");
-var number_win_coins : int  = 4
-var number_win_turn : int = 3
+var number_win_coins : int  = 4;
+var number_win_turn : int = 3;
 
 @onready var player1_coin_texture : CompressedTexture2D = preload("res://Assets/Coins/redcoin.png");
 @onready var player2_coin_texture : CompressedTexture2D = preload("res://Assets/Coins/yellowcoin.png");
@@ -25,8 +27,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
-
 
 # Build a simple board based on the values of Height with board_height variable and Width with board_width
 func build_board():
@@ -46,9 +46,8 @@ func build_board():
 # Check on the vertical line passed as param of the board where to put the coin of the turn
 # @col_num : vertical position of the grid
 func add_coin_on_board(col_num : int):
-	var key : String = "({0},{1})"
 	for y in range(board_height, 0, -1):
-		var cell = board_data[key.format([str(col_num),str(y-1)])];
+		var cell = board_data[KEY.format([str(col_num),str(y-1)])];
 		if cell["Coin"] == null and cell != null:
 			cell["Coin"] = set_coin(cell["Position"], cell["Cell"]);
 			cell["Player"] = player_turn;
@@ -63,6 +62,13 @@ func add_coin_on_board(col_num : int):
 	pass
 
 func reset_board():
+	for cell in board_data:
+		if board_data[cell]["Coin"] != null:
+			board_data[cell]["Coin"].queue_free();
+			board_data[cell]["Coin"] = null
+			board_data[cell]["Cell"].queue_free();
+			board_data[cell]["Cell"] = null
+
 	players = {};
 	board_data = {};
 	build_board();
